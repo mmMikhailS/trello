@@ -19,21 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TwoFAService_VerifyLoginTOTP_FullMethodName            = "/twofa.TwoFAService/VerifyLoginTOTP"
-	TwoFAService_InitVerifyLoginEmail2FA_FullMethodName    = "/twofa.TwoFAService/InitVerifyLoginEmail2FA"
-	TwoFAService_ConfirmVerifyLoginEmail2FA_FullMethodName = "/twofa.TwoFAService/ConfirmVerifyLoginEmail2FA"
-	TwoFAService_InitEnableEmail2FA_FullMethodName         = "/twofa.TwoFAService/InitEnableEmail2FA"
-	TwoFAService_ConfirmEnableEmail2FA_FullMethodName      = "/twofa.TwoFAService/ConfirmEnableEmail2FA"
-	TwoFAService_InitDisableEmail2FA_FullMethodName        = "/twofa.TwoFAService/InitDisableEmail2FA"
-	TwoFAService_ConfirmDisableEmail2FA_FullMethodName     = "/twofa.TwoFAService/ConfirmDisableEmail2FA"
-	TwoFAService_EnableTOTP_FullMethodName                 = "/twofa.TwoFAService/EnableTOTP"
-	TwoFAService_DisableTOTP_FullMethodName                = "/twofa.TwoFAService/DisableTOTP"
+	TwofaService_VerifyLoginTOTP_FullMethodName            = "/twofa.TwofaService/VerifyLoginTOTP"
+	TwofaService_InitVerifyLoginEmail2FA_FullMethodName    = "/twofa.TwofaService/InitVerifyLoginEmail2FA"
+	TwofaService_ConfirmVerifyLoginEmail2FA_FullMethodName = "/twofa.TwofaService/ConfirmVerifyLoginEmail2FA"
+	TwofaService_InitEnableEmail2FA_FullMethodName         = "/twofa.TwofaService/InitEnableEmail2FA"
+	TwofaService_ConfirmEnableEmail2FA_FullMethodName      = "/twofa.TwofaService/ConfirmEnableEmail2FA"
+	TwofaService_InitDisableEmail2FA_FullMethodName        = "/twofa.TwofaService/InitDisableEmail2FA"
+	TwofaService_ConfirmDisableEmail2FA_FullMethodName     = "/twofa.TwofaService/ConfirmDisableEmail2FA"
+	TwofaService_EnableTOTP_FullMethodName                 = "/twofa.TwofaService/EnableTOTP"
+	TwofaService_DisableTOTP_FullMethodName                = "/twofa.TwofaService/DisableTOTP"
 )
 
-// TwoFAServiceClient is the client API for TwoFAService service.
+// TwofaServiceClient is the client API for TwofaService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TwoFAServiceClient interface {
+type TwofaServiceClient interface {
 	VerifyLoginTOTP(ctx context.Context, in *VerifyLoginTOTPRequest, opts ...grpc.CallOption) (*VerifyLoginTOTPResponse, error)
 	InitVerifyLoginEmail2FA(ctx context.Context, in *InitVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*InitVerifyLoginEmail2FAResponse, error)
 	ConfirmVerifyLoginEmail2FA(ctx context.Context, in *ConfirmVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*ConfirmVerifyLoginEmail2FAResponse, error)
@@ -45,108 +45,108 @@ type TwoFAServiceClient interface {
 	DisableTOTP(ctx context.Context, in *DisableTOTPRequest, opts ...grpc.CallOption) (*DisableTOTPResponse, error)
 }
 
-type twoFAServiceClient struct {
+type twofaServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTwoFAServiceClient(cc grpc.ClientConnInterface) TwoFAServiceClient {
-	return &twoFAServiceClient{cc}
+func NewTwofaServiceClient(cc grpc.ClientConnInterface) TwofaServiceClient {
+	return &twofaServiceClient{cc}
 }
 
-func (c *twoFAServiceClient) VerifyLoginTOTP(ctx context.Context, in *VerifyLoginTOTPRequest, opts ...grpc.CallOption) (*VerifyLoginTOTPResponse, error) {
+func (c *twofaServiceClient) VerifyLoginTOTP(ctx context.Context, in *VerifyLoginTOTPRequest, opts ...grpc.CallOption) (*VerifyLoginTOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(VerifyLoginTOTPResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_VerifyLoginTOTP_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_VerifyLoginTOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) InitVerifyLoginEmail2FA(ctx context.Context, in *InitVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*InitVerifyLoginEmail2FAResponse, error) {
+func (c *twofaServiceClient) InitVerifyLoginEmail2FA(ctx context.Context, in *InitVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*InitVerifyLoginEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(InitVerifyLoginEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_InitVerifyLoginEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_InitVerifyLoginEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) ConfirmVerifyLoginEmail2FA(ctx context.Context, in *ConfirmVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*ConfirmVerifyLoginEmail2FAResponse, error) {
+func (c *twofaServiceClient) ConfirmVerifyLoginEmail2FA(ctx context.Context, in *ConfirmVerifyLoginEmail2FARequest, opts ...grpc.CallOption) (*ConfirmVerifyLoginEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ConfirmVerifyLoginEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_ConfirmVerifyLoginEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_ConfirmVerifyLoginEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) InitEnableEmail2FA(ctx context.Context, in *InitEnableEmail2FARequest, opts ...grpc.CallOption) (*InitEnableEmail2FAResponse, error) {
+func (c *twofaServiceClient) InitEnableEmail2FA(ctx context.Context, in *InitEnableEmail2FARequest, opts ...grpc.CallOption) (*InitEnableEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(InitEnableEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_InitEnableEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_InitEnableEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) ConfirmEnableEmail2FA(ctx context.Context, in *ConfirmEnableEmail2FARequest, opts ...grpc.CallOption) (*ConfirmEnableEmail2FAResponse, error) {
+func (c *twofaServiceClient) ConfirmEnableEmail2FA(ctx context.Context, in *ConfirmEnableEmail2FARequest, opts ...grpc.CallOption) (*ConfirmEnableEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ConfirmEnableEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_ConfirmEnableEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_ConfirmEnableEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) InitDisableEmail2FA(ctx context.Context, in *InitDisableEmail2FARequest, opts ...grpc.CallOption) (*InitDisableEmail2FAResponse, error) {
+func (c *twofaServiceClient) InitDisableEmail2FA(ctx context.Context, in *InitDisableEmail2FARequest, opts ...grpc.CallOption) (*InitDisableEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(InitDisableEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_InitDisableEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_InitDisableEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) ConfirmDisableEmail2FA(ctx context.Context, in *ConfirmDisableEmail2FARequest, opts ...grpc.CallOption) (*ConfirmDisableEmail2FAResponse, error) {
+func (c *twofaServiceClient) ConfirmDisableEmail2FA(ctx context.Context, in *ConfirmDisableEmail2FARequest, opts ...grpc.CallOption) (*ConfirmDisableEmail2FAResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ConfirmDisableEmail2FAResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_ConfirmDisableEmail2FA_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_ConfirmDisableEmail2FA_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) EnableTOTP(ctx context.Context, in *EnableTOTPRequest, opts ...grpc.CallOption) (*EnableTOTPResponse, error) {
+func (c *twofaServiceClient) EnableTOTP(ctx context.Context, in *EnableTOTPRequest, opts ...grpc.CallOption) (*EnableTOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(EnableTOTPResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_EnableTOTP_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_EnableTOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *twoFAServiceClient) DisableTOTP(ctx context.Context, in *DisableTOTPRequest, opts ...grpc.CallOption) (*DisableTOTPResponse, error) {
+func (c *twofaServiceClient) DisableTOTP(ctx context.Context, in *DisableTOTPRequest, opts ...grpc.CallOption) (*DisableTOTPResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DisableTOTPResponse)
-	err := c.cc.Invoke(ctx, TwoFAService_DisableTOTP_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TwofaService_DisableTOTP_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TwoFAServiceServer is the server API for TwoFAService service.
-// All implementations must embed UnimplementedTwoFAServiceServer
+// TwofaServiceServer is the server API for TwofaService service.
+// All implementations must embed UnimplementedTwofaServiceServer
 // for forward compatibility.
-type TwoFAServiceServer interface {
+type TwofaServiceServer interface {
 	VerifyLoginTOTP(context.Context, *VerifyLoginTOTPRequest) (*VerifyLoginTOTPResponse, error)
 	InitVerifyLoginEmail2FA(context.Context, *InitVerifyLoginEmail2FARequest) (*InitVerifyLoginEmail2FAResponse, error)
 	ConfirmVerifyLoginEmail2FA(context.Context, *ConfirmVerifyLoginEmail2FARequest) (*ConfirmVerifyLoginEmail2FAResponse, error)
@@ -156,268 +156,268 @@ type TwoFAServiceServer interface {
 	ConfirmDisableEmail2FA(context.Context, *ConfirmDisableEmail2FARequest) (*ConfirmDisableEmail2FAResponse, error)
 	EnableTOTP(context.Context, *EnableTOTPRequest) (*EnableTOTPResponse, error)
 	DisableTOTP(context.Context, *DisableTOTPRequest) (*DisableTOTPResponse, error)
-	mustEmbedUnimplementedTwoFAServiceServer()
+	mustEmbedUnimplementedTwofaServiceServer()
 }
 
-// UnimplementedTwoFAServiceServer must be embedded to have
+// UnimplementedTwofaServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedTwoFAServiceServer struct{}
+type UnimplementedTwofaServiceServer struct{}
 
-func (UnimplementedTwoFAServiceServer) VerifyLoginTOTP(context.Context, *VerifyLoginTOTPRequest) (*VerifyLoginTOTPResponse, error) {
+func (UnimplementedTwofaServiceServer) VerifyLoginTOTP(context.Context, *VerifyLoginTOTPRequest) (*VerifyLoginTOTPResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method VerifyLoginTOTP not implemented")
 }
-func (UnimplementedTwoFAServiceServer) InitVerifyLoginEmail2FA(context.Context, *InitVerifyLoginEmail2FARequest) (*InitVerifyLoginEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) InitVerifyLoginEmail2FA(context.Context, *InitVerifyLoginEmail2FARequest) (*InitVerifyLoginEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method InitVerifyLoginEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) ConfirmVerifyLoginEmail2FA(context.Context, *ConfirmVerifyLoginEmail2FARequest) (*ConfirmVerifyLoginEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) ConfirmVerifyLoginEmail2FA(context.Context, *ConfirmVerifyLoginEmail2FARequest) (*ConfirmVerifyLoginEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmVerifyLoginEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) InitEnableEmail2FA(context.Context, *InitEnableEmail2FARequest) (*InitEnableEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) InitEnableEmail2FA(context.Context, *InitEnableEmail2FARequest) (*InitEnableEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method InitEnableEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) ConfirmEnableEmail2FA(context.Context, *ConfirmEnableEmail2FARequest) (*ConfirmEnableEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) ConfirmEnableEmail2FA(context.Context, *ConfirmEnableEmail2FARequest) (*ConfirmEnableEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmEnableEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) InitDisableEmail2FA(context.Context, *InitDisableEmail2FARequest) (*InitDisableEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) InitDisableEmail2FA(context.Context, *InitDisableEmail2FARequest) (*InitDisableEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method InitDisableEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) ConfirmDisableEmail2FA(context.Context, *ConfirmDisableEmail2FARequest) (*ConfirmDisableEmail2FAResponse, error) {
+func (UnimplementedTwofaServiceServer) ConfirmDisableEmail2FA(context.Context, *ConfirmDisableEmail2FARequest) (*ConfirmDisableEmail2FAResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmDisableEmail2FA not implemented")
 }
-func (UnimplementedTwoFAServiceServer) EnableTOTP(context.Context, *EnableTOTPRequest) (*EnableTOTPResponse, error) {
+func (UnimplementedTwofaServiceServer) EnableTOTP(context.Context, *EnableTOTPRequest) (*EnableTOTPResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method EnableTOTP not implemented")
 }
-func (UnimplementedTwoFAServiceServer) DisableTOTP(context.Context, *DisableTOTPRequest) (*DisableTOTPResponse, error) {
+func (UnimplementedTwofaServiceServer) DisableTOTP(context.Context, *DisableTOTPRequest) (*DisableTOTPResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method DisableTOTP not implemented")
 }
-func (UnimplementedTwoFAServiceServer) mustEmbedUnimplementedTwoFAServiceServer() {}
-func (UnimplementedTwoFAServiceServer) testEmbeddedByValue()                      {}
+func (UnimplementedTwofaServiceServer) mustEmbedUnimplementedTwofaServiceServer() {}
+func (UnimplementedTwofaServiceServer) testEmbeddedByValue()                      {}
 
-// UnsafeTwoFAServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TwoFAServiceServer will
+// UnsafeTwofaServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TwofaServiceServer will
 // result in compilation errors.
-type UnsafeTwoFAServiceServer interface {
-	mustEmbedUnimplementedTwoFAServiceServer()
+type UnsafeTwofaServiceServer interface {
+	mustEmbedUnimplementedTwofaServiceServer()
 }
 
-func RegisterTwoFAServiceServer(s grpc.ServiceRegistrar, srv TwoFAServiceServer) {
-	// If the following call panics, it indicates UnimplementedTwoFAServiceServer was
+func RegisterTwofaServiceServer(s grpc.ServiceRegistrar, srv TwofaServiceServer) {
+	// If the following call panics, it indicates UnimplementedTwofaServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&TwoFAService_ServiceDesc, srv)
+	s.RegisterService(&TwofaService_ServiceDesc, srv)
 }
 
-func _TwoFAService_VerifyLoginTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_VerifyLoginTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(VerifyLoginTOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).VerifyLoginTOTP(ctx, in)
+		return srv.(TwofaServiceServer).VerifyLoginTOTP(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_VerifyLoginTOTP_FullMethodName,
+		FullMethod: TwofaService_VerifyLoginTOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).VerifyLoginTOTP(ctx, req.(*VerifyLoginTOTPRequest))
+		return srv.(TwofaServiceServer).VerifyLoginTOTP(ctx, req.(*VerifyLoginTOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_InitVerifyLoginEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_InitVerifyLoginEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InitVerifyLoginEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).InitVerifyLoginEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).InitVerifyLoginEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_InitVerifyLoginEmail2FA_FullMethodName,
+		FullMethod: TwofaService_InitVerifyLoginEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).InitVerifyLoginEmail2FA(ctx, req.(*InitVerifyLoginEmail2FARequest))
+		return srv.(TwofaServiceServer).InitVerifyLoginEmail2FA(ctx, req.(*InitVerifyLoginEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_ConfirmVerifyLoginEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_ConfirmVerifyLoginEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConfirmVerifyLoginEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).ConfirmVerifyLoginEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).ConfirmVerifyLoginEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_ConfirmVerifyLoginEmail2FA_FullMethodName,
+		FullMethod: TwofaService_ConfirmVerifyLoginEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).ConfirmVerifyLoginEmail2FA(ctx, req.(*ConfirmVerifyLoginEmail2FARequest))
+		return srv.(TwofaServiceServer).ConfirmVerifyLoginEmail2FA(ctx, req.(*ConfirmVerifyLoginEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_InitEnableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_InitEnableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InitEnableEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).InitEnableEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).InitEnableEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_InitEnableEmail2FA_FullMethodName,
+		FullMethod: TwofaService_InitEnableEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).InitEnableEmail2FA(ctx, req.(*InitEnableEmail2FARequest))
+		return srv.(TwofaServiceServer).InitEnableEmail2FA(ctx, req.(*InitEnableEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_ConfirmEnableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_ConfirmEnableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConfirmEnableEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).ConfirmEnableEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).ConfirmEnableEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_ConfirmEnableEmail2FA_FullMethodName,
+		FullMethod: TwofaService_ConfirmEnableEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).ConfirmEnableEmail2FA(ctx, req.(*ConfirmEnableEmail2FARequest))
+		return srv.(TwofaServiceServer).ConfirmEnableEmail2FA(ctx, req.(*ConfirmEnableEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_InitDisableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_InitDisableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InitDisableEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).InitDisableEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).InitDisableEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_InitDisableEmail2FA_FullMethodName,
+		FullMethod: TwofaService_InitDisableEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).InitDisableEmail2FA(ctx, req.(*InitDisableEmail2FARequest))
+		return srv.(TwofaServiceServer).InitDisableEmail2FA(ctx, req.(*InitDisableEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_ConfirmDisableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_ConfirmDisableEmail2FA_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ConfirmDisableEmail2FARequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).ConfirmDisableEmail2FA(ctx, in)
+		return srv.(TwofaServiceServer).ConfirmDisableEmail2FA(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_ConfirmDisableEmail2FA_FullMethodName,
+		FullMethod: TwofaService_ConfirmDisableEmail2FA_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).ConfirmDisableEmail2FA(ctx, req.(*ConfirmDisableEmail2FARequest))
+		return srv.(TwofaServiceServer).ConfirmDisableEmail2FA(ctx, req.(*ConfirmDisableEmail2FARequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_EnableTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_EnableTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnableTOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).EnableTOTP(ctx, in)
+		return srv.(TwofaServiceServer).EnableTOTP(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_EnableTOTP_FullMethodName,
+		FullMethod: TwofaService_EnableTOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).EnableTOTP(ctx, req.(*EnableTOTPRequest))
+		return srv.(TwofaServiceServer).EnableTOTP(ctx, req.(*EnableTOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TwoFAService_DisableTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TwofaService_DisableTOTP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DisableTOTPRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TwoFAServiceServer).DisableTOTP(ctx, in)
+		return srv.(TwofaServiceServer).DisableTOTP(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TwoFAService_DisableTOTP_FullMethodName,
+		FullMethod: TwofaService_DisableTOTP_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TwoFAServiceServer).DisableTOTP(ctx, req.(*DisableTOTPRequest))
+		return srv.(TwofaServiceServer).DisableTOTP(ctx, req.(*DisableTOTPRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TwoFAService_ServiceDesc is the grpc.ServiceDesc for TwoFAService service.
+// TwofaService_ServiceDesc is the grpc.ServiceDesc for TwofaService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TwoFAService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "twofa.TwoFAService",
-	HandlerType: (*TwoFAServiceServer)(nil),
+var TwofaService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "twofa.TwofaService",
+	HandlerType: (*TwofaServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "VerifyLoginTOTP",
-			Handler:    _TwoFAService_VerifyLoginTOTP_Handler,
+			Handler:    _TwofaService_VerifyLoginTOTP_Handler,
 		},
 		{
 			MethodName: "InitVerifyLoginEmail2FA",
-			Handler:    _TwoFAService_InitVerifyLoginEmail2FA_Handler,
+			Handler:    _TwofaService_InitVerifyLoginEmail2FA_Handler,
 		},
 		{
 			MethodName: "ConfirmVerifyLoginEmail2FA",
-			Handler:    _TwoFAService_ConfirmVerifyLoginEmail2FA_Handler,
+			Handler:    _TwofaService_ConfirmVerifyLoginEmail2FA_Handler,
 		},
 		{
 			MethodName: "InitEnableEmail2FA",
-			Handler:    _TwoFAService_InitEnableEmail2FA_Handler,
+			Handler:    _TwofaService_InitEnableEmail2FA_Handler,
 		},
 		{
 			MethodName: "ConfirmEnableEmail2FA",
-			Handler:    _TwoFAService_ConfirmEnableEmail2FA_Handler,
+			Handler:    _TwofaService_ConfirmEnableEmail2FA_Handler,
 		},
 		{
 			MethodName: "InitDisableEmail2FA",
-			Handler:    _TwoFAService_InitDisableEmail2FA_Handler,
+			Handler:    _TwofaService_InitDisableEmail2FA_Handler,
 		},
 		{
 			MethodName: "ConfirmDisableEmail2FA",
-			Handler:    _TwoFAService_ConfirmDisableEmail2FA_Handler,
+			Handler:    _TwofaService_ConfirmDisableEmail2FA_Handler,
 		},
 		{
 			MethodName: "EnableTOTP",
-			Handler:    _TwoFAService_EnableTOTP_Handler,
+			Handler:    _TwofaService_EnableTOTP_Handler,
 		},
 		{
 			MethodName: "DisableTOTP",
-			Handler:    _TwoFAService_DisableTOTP_Handler,
+			Handler:    _TwofaService_DisableTOTP_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

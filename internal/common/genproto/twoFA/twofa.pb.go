@@ -848,7 +848,7 @@ const file_twofa_proto_rawDesc = "" +
 	"\x12DisableTOTPRequest\x12\x10\n" +
 	"\x03otp\x18\x01 \x01(\tR\x03otp\"\x15\n" +
 	"\x13DisableTOTPResponse2\xca\x06\n" +
-	"\fTwoFAService\x12P\n" +
+	"\fTwofaService\x12P\n" +
 	"\x0fVerifyLoginTOTP\x12\x1d.twofa.VerifyLoginTOTPRequest\x1a\x1e.twofa.VerifyLoginTOTPResponse\x12h\n" +
 	"\x17InitVerifyLoginEmail2FA\x12%.twofa.InitVerifyLoginEmail2FARequest\x1a&.twofa.InitVerifyLoginEmail2FAResponse\x12q\n" +
 	"\x1aConfirmVerifyLoginEmail2FA\x12(.twofa.ConfirmVerifyLoginEmail2FARequest\x1a).twofa.ConfirmVerifyLoginEmail2FAResponse\x12Y\n" +
@@ -894,24 +894,24 @@ var file_twofa_proto_goTypes = []any{
 	(*DisableTOTPResponse)(nil),                // 17: twofa.DisableTOTPResponse
 }
 var file_twofa_proto_depIdxs = []int32{
-	0,  // 0: twofa.TwoFAService.VerifyLoginTOTP:input_type -> twofa.VerifyLoginTOTPRequest
-	2,  // 1: twofa.TwoFAService.InitVerifyLoginEmail2FA:input_type -> twofa.InitVerifyLoginEmail2FARequest
-	4,  // 2: twofa.TwoFAService.ConfirmVerifyLoginEmail2FA:input_type -> twofa.ConfirmVerifyLoginEmail2FARequest
-	6,  // 3: twofa.TwoFAService.InitEnableEmail2FA:input_type -> twofa.InitEnableEmail2FARequest
-	8,  // 4: twofa.TwoFAService.ConfirmEnableEmail2FA:input_type -> twofa.ConfirmEnableEmail2FARequest
-	10, // 5: twofa.TwoFAService.InitDisableEmail2FA:input_type -> twofa.InitDisableEmail2FARequest
-	12, // 6: twofa.TwoFAService.ConfirmDisableEmail2FA:input_type -> twofa.ConfirmDisableEmail2FARequest
-	14, // 7: twofa.TwoFAService.EnableTOTP:input_type -> twofa.EnableTOTPRequest
-	16, // 8: twofa.TwoFAService.DisableTOTP:input_type -> twofa.DisableTOTPRequest
-	1,  // 9: twofa.TwoFAService.VerifyLoginTOTP:output_type -> twofa.VerifyLoginTOTPResponse
-	3,  // 10: twofa.TwoFAService.InitVerifyLoginEmail2FA:output_type -> twofa.InitVerifyLoginEmail2FAResponse
-	5,  // 11: twofa.TwoFAService.ConfirmVerifyLoginEmail2FA:output_type -> twofa.ConfirmVerifyLoginEmail2FAResponse
-	7,  // 12: twofa.TwoFAService.InitEnableEmail2FA:output_type -> twofa.InitEnableEmail2FAResponse
-	9,  // 13: twofa.TwoFAService.ConfirmEnableEmail2FA:output_type -> twofa.ConfirmEnableEmail2FAResponse
-	11, // 14: twofa.TwoFAService.InitDisableEmail2FA:output_type -> twofa.InitDisableEmail2FAResponse
-	13, // 15: twofa.TwoFAService.ConfirmDisableEmail2FA:output_type -> twofa.ConfirmDisableEmail2FAResponse
-	15, // 16: twofa.TwoFAService.EnableTOTP:output_type -> twofa.EnableTOTPResponse
-	17, // 17: twofa.TwoFAService.DisableTOTP:output_type -> twofa.DisableTOTPResponse
+	0,  // 0: twofa.TwofaService.VerifyLoginTOTP:input_type -> twofa.VerifyLoginTOTPRequest
+	2,  // 1: twofa.TwofaService.InitVerifyLoginEmail2FA:input_type -> twofa.InitVerifyLoginEmail2FARequest
+	4,  // 2: twofa.TwofaService.ConfirmVerifyLoginEmail2FA:input_type -> twofa.ConfirmVerifyLoginEmail2FARequest
+	6,  // 3: twofa.TwofaService.InitEnableEmail2FA:input_type -> twofa.InitEnableEmail2FARequest
+	8,  // 4: twofa.TwofaService.ConfirmEnableEmail2FA:input_type -> twofa.ConfirmEnableEmail2FARequest
+	10, // 5: twofa.TwofaService.InitDisableEmail2FA:input_type -> twofa.InitDisableEmail2FARequest
+	12, // 6: twofa.TwofaService.ConfirmDisableEmail2FA:input_type -> twofa.ConfirmDisableEmail2FARequest
+	14, // 7: twofa.TwofaService.EnableTOTP:input_type -> twofa.EnableTOTPRequest
+	16, // 8: twofa.TwofaService.DisableTOTP:input_type -> twofa.DisableTOTPRequest
+	1,  // 9: twofa.TwofaService.VerifyLoginTOTP:output_type -> twofa.VerifyLoginTOTPResponse
+	3,  // 10: twofa.TwofaService.InitVerifyLoginEmail2FA:output_type -> twofa.InitVerifyLoginEmail2FAResponse
+	5,  // 11: twofa.TwofaService.ConfirmVerifyLoginEmail2FA:output_type -> twofa.ConfirmVerifyLoginEmail2FAResponse
+	7,  // 12: twofa.TwofaService.InitEnableEmail2FA:output_type -> twofa.InitEnableEmail2FAResponse
+	9,  // 13: twofa.TwofaService.ConfirmEnableEmail2FA:output_type -> twofa.ConfirmEnableEmail2FAResponse
+	11, // 14: twofa.TwofaService.InitDisableEmail2FA:output_type -> twofa.InitDisableEmail2FAResponse
+	13, // 15: twofa.TwofaService.ConfirmDisableEmail2FA:output_type -> twofa.ConfirmDisableEmail2FAResponse
+	15, // 16: twofa.TwofaService.EnableTOTP:output_type -> twofa.EnableTOTPResponse
+	17, // 17: twofa.TwofaService.DisableTOTP:output_type -> twofa.DisableTOTPResponse
 	9,  // [9:18] is the sub-list for method output_type
 	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

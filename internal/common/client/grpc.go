@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"ddd/internal/common/genproto/auth"
+	"ddd/internal/common/genproto/board"
 	"ddd/internal/common/genproto/twofa"
 
 	"github.com/pkg/errors"
@@ -39,7 +40,50 @@ func WaitForAuthService(timeout time.Duration) bool {
 	return waitForPort(os.Getenv("AUTH_GRPC_ADDR"), timeout)
 }
 
-func NewTwofaClient() (client twofa.TwoFAServiceClient, close func() error, err error) {
+func NewTwofaClient() (client twofa.TwofaServiceClient, close func() error, err error) {
+	grpcAddr := os.Getenv("TWOFA_GRPC_ADDR")
+	if grpcAddr == "" {
+		return nil, func() error { return nil }, errors.New("empty env TWOFA_GRPC_ADDR")
+	}
+
+	opts, err := grpcDialOpts( /* grpcAddr */ )
+	if err != nil {
+		return nil, func() error { return nil }, err
+	}
+
+	conn, err := grpc.NewClient(grpcAddr, opts...)
+	if err != nil {
+		return nil, func() error { return nil }, err
+	}
+
+	return twofa.NewTwofaServiceClient(conn), conn.Close, nil
+}
+
+func WaitForTwofaService(timeout time.Duration) bool {
+	return waitForPort(os.Getenv("TWOFA_GRPC_ADDR"), timeout)
+}
+
+func NewBoardClient() (client board.BoardServiceClient, close func() error, err error) {
+	grpcAddr := os.Getenv("BOARD_GRPC_ADDR")
+	if grpcAddr == "" {
+		return nil, func() error { return nil }, errors.New("empty env BOARD_GRPC_ADDR")
+	}
+
+	opts, err := grpcDialOpts( /* grpcAddr */ )
+	if err != nil {
+		return nil, func() error { return nil }, err
+	}
+
+	conn, err := grpc.NewClient(grpcAddr, opts...)
+	if err != nil {
+		return nil, func() error { return nil }, err
+	}
+
+	return board.NewBoardServiceClient(conn), conn.Close, nil
+}
+
+func WaitForBoardService(timeout time.Duration) bool {
+	return waitForPort(os.Getenv("BOARD_GRPC_ADDR"), timeout)
 }
 
 func grpcDialOpts( /*grpcAddr string*/ ) ([]grpc.DialOption, error) {
