@@ -1,0 +1,319 @@
+openapi: "3.0.3"
+info:
+  version: "1.0.0"
+  title: "TwoFA"
+  description: "Two-factor authentication service"
+servers:
+  - url: "http://{hostname}/api"
+    variables:
+      hostname:
+        default: "localhost"
+security:
+  - bearerAuth: []
+paths:
+  /twofa/verifyLoginTOTP:
+    post:
+      operationId: verifyLoginTOTP
+      summary: "Verify login using TOTP"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifyLoginTOTPRequest"
+      responses:
+        "200":
+          description: "TOTP verification successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerifyLoginTOTPResponse"
+
+  /twofa/initVerifyLoginEmail2FA:
+    post:
+      operationId: initVerifyLoginEmail2FA
+      summary: "Init email 2FA verification for login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InitVerifyLoginEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA OTP generated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InitVerifyLoginEmail2FAResponse"
+
+  /twofa/confirmVerifyLoginEmail2FA:
+    post:
+      operationId: confirmVerifyLoginEmail2FA
+      summary: "Confirm email 2FA verification for login"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConfirmVerifyLoginEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA verification confirmed"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfirmVerifyLoginEmail2FAResponse"
+
+  /twofa/initEnableEmail2FA:
+    post:
+      operationId: initEnableEmail2FA
+      summary: "Init enabling email 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InitEnableEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA enable OTP generated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InitEnableEmail2FAResponse"
+
+  /twofa/confirmEnableEmail2FA:
+    post:
+      operationId: confirmEnableEmail2FA
+      summary: "Confirm enabling email 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConfirmEnableEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA enabled successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfirmEnableEmail2FAResponse"
+
+  /twofa/initDisableEmail2FA:
+    post:
+      operationId: initDisableEmail2FA
+      summary: "Init disabling email 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InitDisableEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA disable OTP generated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InitDisableEmail2FAResponse"
+
+  /twofa/confirmDisableEmail2FA:
+    post:
+      operationId: confirmDisableEmail2FA
+      summary: "Confirm disabling email 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConfirmDisableEmail2FARequest"
+      responses:
+        "200":
+          description: "Email 2FA disabled successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfirmDisableEmail2FAResponse"
+
+  /twofa/enableTOTP:
+    post:
+      operationId: enableTOTP
+      summary: "Enable TOTP 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableTOTPRequest"
+      responses:
+        "200":
+          description: "TOTP enabled successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnableTOTPResponse"
+
+  /twofa/disableTOTP:
+    post:
+      operationId: disableTOTP
+      summary: "Disable TOTP 2FA"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DisableTOTPRequest"
+      responses:
+        "200":
+          description: "TOTP disabled successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DisableTOTPResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    VerifyLoginTOTPRequest:
+      type: object
+      properties:
+        otp:
+          type: string
+      required:
+        - otp
+
+    VerifyLoginTOTPResponse:
+      type: object
+      description: "Empty response"
+
+    InitVerifyLoginEmail2FARequest:
+      type: object
+      description: "Empty request"
+
+    InitVerifyLoginEmail2FAResponse:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        expires_at:
+          type: integer
+          format: int64
+      required:
+        - otp_id
+        - expires_at
+
+    ConfirmVerifyLoginEmail2FARequest:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        code:
+          type: string
+      required:
+        - otp_id
+        - code
+
+    ConfirmVerifyLoginEmail2FAResponse:
+      type: object
+      description: "Empty response"
+
+    InitEnableEmail2FARequest:
+      type: object
+      properties:
+        password:
+          type: string
+      required:
+        - password
+
+    InitEnableEmail2FAResponse:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        expires_at:
+          type: integer
+          format: int64
+      required:
+        - otp_id
+        - expires_at
+
+    ConfirmEnableEmail2FARequest:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        code:
+          type: string
+      required:
+        - otp_id
+        - code
+
+    ConfirmEnableEmail2FAResponse:
+      type: object
+      description: "Empty response"
+
+    InitDisableEmail2FARequest:
+      type: object
+      properties:
+        password:
+          type: string
+      required:
+        - password
+
+    InitDisableEmail2FAResponse:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        expires_at:
+          type: integer
+          format: int64
+      required:
+        - otp_id
+        - expires_at
+
+    ConfirmDisableEmail2FARequest:
+      type: object
+      properties:
+        otp_id:
+          type: string
+        code:
+          type: string
+      required:
+        - otp_id
+        - code
+
+    ConfirmDisableEmail2FAResponse:
+      type: object
+      description: "Empty response"
+
+    EnableTOTPRequest:
+      type: object
+      properties:
+        otp:
+          type: string
+      required:
+        - otp
+
+    EnableTOTPResponse:
+      type: object
+      description: "Empty response"
+
+    DisableTOTPRequest:
+      type: object
+      properties:
+        otp:
+          type: string
+      required:
+        - otp
+
+    DisableTOTPResponse:
+      type: object
+      description: "Empty response"

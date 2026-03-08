@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package board;
+
+option go_package = "github.com/mmMikhailS/trello/internal/common/board";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service BoardService {
+  rpc CreateBoard(CreateBoardRequest) returns (CreateBoardResponse);
+  rpc DeleteBoard(DeleteBoardRequest) returns (google.protobuf.Empty); 
+  rpc GetBoard(GetBoardRequest) returns (Board);
+
+  rpc Collaborate(CollaborateRequest) returns (CollaborateResponse);
+  rpc DeleteCollaborator(DeleteCollaboratorRequest) returns (google.protobuf.Empty);
+  
+  rpc ChangeBoardName(ChangeBoardNameRequest) returns (ChangeBoardNameResponse);
+  rpc ChangeBoardWallpapers(ChangeBoardWallpapersRequest) returns (ChangeBoardWallpapersResponse);
+  
+  rpc CreateList(CreateListRequest) returns (CreateListResponse);
+  rpc DeleteList(DeleteListRequest) returns (DeleteListRequest);
+  rpc MoveList(MoveListRequest) returns (MoveListResponse);
+  rpc ChangeListName(ChangeListNameRequest) returns (ChangeListNameResponse);
+
+  rpc CreateCard(CreateCardRequest) returns (CreateCardResponse);
+  rpc DeleteCard(DeleteCardResponse) returns (DeleteCardResponse);
+  rpc MoveCard(MoveCardRequest) returns (MoveCardResponse);
+  rpc ChangeCardText(ChangeCardNameRequest) returns (ChangeCardTextResponse);
+}
+
+message Board {
+  int64 id = 1;
+  string name = 2;
+  repeated int64 collaborator_ids = 3;
+  repeated string wallpapers = 4;
+  repeated List lists = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message List {
+  int64 id = 1;
+  string name = 2;
+  repeated Card cards = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message Card {
+  int64 id = 1;
+  string title = 2;
+  string description = 3;
+  repeated int64 assignee_ids = 4;
+  google.protobuf.Timestamp due_date = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message CreateBoardRequest {
+  string name = 1;
+  repeated string wallpapes = 2;
+}
+
+message CreateBoardResponse {
+  Board board = 1;
+}
+
+message CollaborateRequest {
+  int64 board_id = 1;
+  int64 collaborator_id = 2;
+}
+
+message CollaborateResponse {
+  Board board = 1;
+}
+
+message DeleteCollaboratorRequest {
+  int64 board_id = 1;
+  int64 collaborator_id = 2;
+}
+
+message DeleteBoardRequest {
+  int64 board_id = 1;
+}
+
+message ChangeBoardNameRequest {
+  int64 board_id = 1;
+  string new_name = 2;
+}
+
+message ChangeBoardNameResponse {
+  Board board = 1;
+}
+
+message ChangeBoardWallpapersRequest{
+  int64 board_id = 1;
+  repeated string wallpapers = 2;
+}
+
+message ChangeBoardWallpapersResponse {
+  Board board = 1;
+}
+
+message GetBoardRequest {
+  int64 board_id = 1;
+}

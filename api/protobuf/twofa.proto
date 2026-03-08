@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package twofa;
+
+option go_package = "github.com/mmMikhailS/trello/internal/common/twofa";
+
+service TwofaService {
+  rpc VerifyLoginTOTP(VerifyLoginTOTPRequest) returns (VerifyLoginTOTPResponse);
+  
+  rpc InitVerifyLoginEmail2FA(InitVerifyLoginEmail2FARequest) returns (InitVerifyLoginEmail2FAResponse);
+  rpc ConfirmVerifyLoginEmail2FA(ConfirmVerifyLoginEmail2FARequest) returns (ConfirmVerifyLoginEmail2FAResponse);
+  
+  rpc InitEnableEmail2FA(InitEnableEmail2FARequest) returns (InitEnableEmail2FAResponse);
+  rpc ConfirmEnableEmail2FA(ConfirmEnableEmail2FARequest) returns (ConfirmEnableEmail2FAResponse);
+
+  rpc InitDisableEmail2FA(InitDisableEmail2FARequest) returns (InitDisableEmail2FAResponse);
+  rpc ConfirmDisableEmail2FA(ConfirmDisableEmail2FARequest) returns (ConfirmDisableEmail2FAResponse);
+
+  rpc EnableTOTP(EnableTOTPRequest) returns (EnableTOTPResponse);
+  rpc DisableTOTP(DisableTOTPRequest) returns (DisableTOTPResponse);
+}
+
+message VerifyLoginTOTPRequest {
+  string otp = 1;
+}
+message VerifyLoginTOTPResponse {}
+
+message InitVerifyLoginEmail2FARequest {}
+message InitVerifyLoginEmail2FAResponse {
+  string otp_id = 1;
+  int64 expires_at = 2;
+}
+
+message ConfirmVerifyLoginEmail2FARequest {
+  string otp_id = 1;
+  string code = 2;
+}
+message ConfirmVerifyLoginEmail2FAResponse {}
+
+message InitEnableEmail2FARequest {
+  string password = 1;
+}
+message InitEnableEmail2FAResponse {
+  string otp_id = 1;
+  int64 expires_at = 2;
+}
+
+message ConfirmEnableEmail2FARequest {
+  string otp_id = 1;
+  string code = 2;
+}
+message ConfirmEnableEmail2FAResponse {}
+
+message InitDisableEmail2FARequest {
+  string password = 1;
+}
+message InitDisableEmail2FAResponse {
+  string otp_id = 1;
+  int64 expires_at = 2;
+}
+
+message ConfirmDisableEmail2FARequest {
+  string otp_id = 1;
+  string code = 2;
+}
+message ConfirmDisableEmail2FAResponse {}
+
+message EnableTOTPRequest {
+  string otp = 1;
+}
+message EnableTOTPResponse {}
+
+message DisableTOTPRequest {
+  string otp = 1;
+}
+message DisableTOTPResponse {}
+

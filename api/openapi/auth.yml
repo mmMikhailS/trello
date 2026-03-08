@@ -1,0 +1,216 @@
+openapi: "3.0.3"
+info:
+  version: "1.0.0"
+  title: "Auth"
+  description: "Auth app"
+servers:
+  - url: "http://{hostname}/api"
+    variables:
+      hostname:
+        default: "localhost"
+security:
+  - bearerAuth: []
+paths:
+  /auth/registerUser:
+    post:
+      operationId: registerUser
+      summary: "Register a new user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserRequest"
+      responses:
+        "200":
+          description: "User registered successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterUserResponse"
+
+  /auth/loginUser:
+    post:
+      operationId: loginUser
+      summary: "Login a user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: "Login successful, returns tokens"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /auth/logout:
+    post:
+      operationId: logout
+      summary: "Logout user by refresh token"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogoutRequest"
+      responses:
+        "200":
+          description: "Logout successful"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutResponse"
+
+  /auth/changePassword:
+    post:
+      operationId: changePassword
+      summary: "Change user password"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+      responses:
+        "200":
+          description: "Password changed successfully, returns new tokens"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangePasswordResponse"
+
+  /auth/refreshTokens:
+    post:
+      operationId: refreshTokens
+      summary: "Refresh access and refresh tokens"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokensRequest"
+      responses:
+        "200":
+          description: "Tokens refreshed successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RefreshTokensResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    RegisterUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+
+    RegisterUserResponse:
+      type: object
+      properties:
+        user_id:
+          type: string
+      required:
+        - user_id
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+
+    LoginResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_at:
+          type: integer
+          format: int64
+      required:
+        - access_token
+        - refresh_token
+        - expires_at
+
+    LogoutRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+        - refresh_token
+
+    LogoutResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required:
+        - success
+
+    ChangePasswordRequest:
+      type: object
+      properties:
+        old_password:
+          type: string
+        new_password:
+          type: string
+      required:
+        - old_password
+        - new_password
+
+    ChangePasswordResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+      required:
+        - access_token
+        - refresh_token
+
+    RefreshTokensRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+      required:
+        - refresh_token
+
+    RefreshTokensResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_at:
+          type: integer
+          format: int64
+      required:
+        - access_token
+        - refresh_token
+        - expires_at

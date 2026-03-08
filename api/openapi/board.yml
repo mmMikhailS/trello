@@ -1,0 +1,337 @@
+openapi: "3.0.3"
+info:
+  version: "1.0.0"
+  title: "Board API"
+  description: "Service for managing boards, lists, cards, and collaborators"
+servers:
+  - url: "http://{hostname}/api"
+    variables:
+      hostname:
+        default: "localhost"
+security:
+  - bearerAuth: []
+
+paths:
+  /boards:
+    post:
+      operationId: createBoard
+      summary: "Create a new board"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBoardRequest"
+      responses:
+        "201":
+          description: "Board created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateBoardResponse"
+
+  /boards/{board_id}:
+    get:
+      operationId: getBoard
+      summary: "Get board by ID"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Board details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Board"
+
+    delete:
+      operationId: deleteBoard
+      summary: "Delete board by ID"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: "Board deleted successfully"
+
+  /boards/{board_id}/collaborators:
+    post:
+      operationId: addCollaborator
+      summary: "Add a collaborator to a board"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollaborateRequest"
+      responses:
+        "200":
+          description: "Board with collaborator added"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Board"
+
+  /boards/{board_id}/collaborators/{collaborator_id}:
+    delete:
+      operationId: deleteCollaborator
+      summary: "Remove collaborator from a board"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: collaborator_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: "Collaborator removed successfully"
+
+  /boards/{board_id}/name:
+    patch:
+      operationId: changeBoardName
+      summary: "Change the name of a board"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeBoardNameRequest"
+      responses:
+        "200":
+          description: "Board name updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeBoardNameResponse"
+
+  /boards/{board_id}/wallpapers:
+    patch:
+      operationId: changeBoardWallpapers
+      summary: "Change the wallpapers of a board"
+      parameters:
+        - name: board_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeBoardWallpapersRequest"
+      responses:
+        "200":
+          description: "Board wallpapers updated"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeBoardWallpapersResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Board:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        collaborator_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        wallpapers:
+          type: array
+          items:
+            type: string
+        lists:
+          type: array
+          items:
+            $ref: "#/components/schemas/List"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    List:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        cards:
+          type: array
+          items:
+            $ref: "#/components/schemas/Card"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Card:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        assignee_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        due_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateBoardRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        wallpapers:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+
+    CreateBoardResponse:
+      type: object
+      properties:
+        board:
+          $ref: "#/components/schemas/Board"
+
+    CollaborateRequest:
+      type: object
+      properties:
+        collaborator_id:
+          type: integer
+          format: int64
+      required:
+        - collaborator_id
+
+    ChangeBoardNameRequest:
+      type: object
+      properties:
+        new_name:
+          type: string
+      required:
+        - new_name
+
+    ChangeBoardNameResponse:
+      type: object
+      properties:
+        board:
+          $ref: "#/components/schemas/Board"
+
+    ChangeBoardWallpapersRequest:
+      type: object
+      properties:
+        wallpapers:
+          type: array
+          items:
+            type: string
+      required:
+        - wallpapers
+
+    ChangeBoardWallpapersResponse:
+      type: object
+      properties:
+        board:
+          $ref: "#/components/schemas/Board"
+
+    CreateListRequest:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    MoveListRequest:
+      type: object
+      properties:
+        position:
+          type: integer
+      required:
+        - position
+
+    CreateCardRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        assignee_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+        due_date:
+          type: string
+          format: date-time
+
+    ChangeCardTextRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
